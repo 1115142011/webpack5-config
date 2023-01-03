@@ -13,6 +13,20 @@ module.exports = {
   plugins: require("./plugins.config.js").configPlugins,
   resolve: require("./resolve.config.js"),
   devServer: require("./devserver.config.js"),
+  optimization: {
+    runtimeChunk: 'single',
+    moduleIds: 'deterministic',
+    splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+            vendor: {
+                test: /[\\/]node_modules[\\/]/,
+                name: 'library',
+                chunks: 'all',
+            },
+        },
+    },
+},
   experiments: {
     layers: true,
   },
